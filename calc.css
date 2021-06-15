@@ -1,0 +1,105 @@
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+html{
+    height:100%;
+    box-sizing: border-box;
+    grid-template-rows: repeat(10, .5fr);
+    grid-template-columns: repeat(10, .5fr);
+}
+header{
+    text-align: center;
+    font-size: 5em;
+    
+}
+html,body{
+    padding:0;
+    margin:0;
+}
+
+body{
+    min-height:100%;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%,
+ rgba(148,187,233,1) 100%);
+}
+
+#calculator{
+    display:grid;
+    position: absolute;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 5px;
+    background: aquamarine;
+    border: 9px solid rgba(42, 161, 216, 0.849);
+    border-radius: 2%;
+    top: 20%;
+    left: 38%;
+    height: 40em;
+    width: 30em;
+    grid-template-areas: 
+        "display display    display display"
+        "btnclr  btnplusmin btnplus btnmin"
+        "btn1    btn2       btn3    btnmultiply"
+        "btn4    btn5       btn6    btndiv"
+        "btn7    btn8       btn9    btnequal"
+        "btn0    btn0       btndot  btnequal ";
+}
+.buttons{
+    border: 2px solid black;
+}
+#btn1{
+    grid-area: btn1;
+}
+#btn2{
+    grid-area: btn2;
+}
+#btn3{
+    grid-area: btn3;
+}
+#btn4{
+    grid-area: btn4;
+}
+#btn5{
+    grid-area: btn5;
+}
+#btn6{
+    grid-area: btn6;
+}
+#btn7{
+    grid-area: btn7;
+}
+#btn8{
+    grid-area: btn8;
+}
+#btn9{
+    grid-area: btn9;
+}
+#btn0{
+    grid-area:btn0;
+}
+#btnplus{
+    grid-area: btnplus;
+}
+#btnequal{
+    grid-area: btnequal;
+}
+#btnclr{
+    grid-area:btnclr;
+}
+#btndot{
+    grid-area:btndot;
+}
+#btnplusmin{
+    grid-area: btnplusmin;
+}
+#display{
+    grid-area: display;
+    border: 2px solid black;
+}
+
+.buttons{
+    text-align: center;
+}
