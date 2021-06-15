@@ -24,6 +24,9 @@ body{
     background: radial-gradient(circle, rgba(238,174,202,1) 0%,
  rgba(148,187,233,1) 100%);
 }
+#title{
+    color: rgba(35, 36, 36, 0.747);
+}
 
 #calculator{
     display:grid;
@@ -31,9 +34,11 @@ body{
     justify-content: center;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
-    grid-gap: 5px;
-    background: aquamarine;
-    border: 9px solid rgba(42, 161, 216, 0.849);
+    grid-gap: 3px;
+    -webkit-box-shadow: 0px 14px 22px 9px rgba(15, 15, 15, 0.35); 
+    box-shadow: 0px 14px 25px 9px rgba(15, 15, 15, 0.35);
+    background: rgba(76, 148, 182, 0.753);
+    border: 9px outset #4c94b6c0;
     border-radius: 2%;
     top: 20%;
     left: 38%;
@@ -47,8 +52,12 @@ body{
         "btn7    btn8       btn9    btnequal"
         "btn0    btn0       btndot  btnequal ";
 }
+
 .buttons{
     border: 2px solid black;
+    background: rgb(238, 175, 202);
+    box-shadow: 2px 0px 2px 2px rgba(15, 15, 15, 0.35);
+    border-radius: 5%;
 }
 #btn1{
     grid-area: btn1;
@@ -82,24 +91,63 @@ body{
 }
 #btnplus{
     grid-area: btnplus;
+    background-color:rgba(167, 236, 221, 0.984);
+}
+#btnmin{
+    grid-area: btnmin;
+    background-color:rgba(167, 236, 221, 0.984);
+}
+#btnmultiply{
+    grid-area: btnmultiply;
+    background-color:rgba(167, 236, 221, 0.984);
+}
+#btndiv{
+    grid-area: btndiv;
+    background-color:rgba(167, 236, 221, 0.984);
 }
 #btnequal{
     grid-area: btnequal;
+    background-color: rgba(219, 206, 248, 0.897);
+    font-size: 30px;
 }
 #btnclr{
     grid-area:btnclr;
+    background-color:rgba(167, 236, 221, 0.984);
 }
 #btndot{
     grid-area:btndot;
+    font-size: 30px;
 }
 #btnplusmin{
     grid-area: btnplusmin;
+    background-color:rgba(167, 236, 221, 0.984);
 }
 #display{
     grid-area: display;
-    border: 2px solid black;
+    color: rgba(32, 32, 32, 0.87);
+    font-size: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-end;
+    align-content: flex-end;
+    flex-direction: column;
+    border: 2px outset black;
+    border: 2px inset black;
+    background-color: rgba(223, 247, 240, 0.884);
+    
+    
 }
 
 .buttons{
+    color: rgb(245, 241, 241);
+    text-shadow: 1px 0 2px black;
     text-align: center;
+    box-shadow: 1px 0 2px;
+    font-size: 30px;
 }
+
+.buttons:active{
+    transform: translateY(2px);
+    box-shadow: 0 3px #666;
+}
+

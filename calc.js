@@ -1,3 +1,16 @@
+const buttons = document.getElementsByClassName("buttons");
+
+function displayNum(){
+    buttons.addEventListener('click', function(){
+        console.log('clicky!');
+    })
+}
+
+
+
+
+
+
 function sum(x,y){
     return x+y;
 }
