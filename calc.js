@@ -1,12 +1,22 @@
-const buttons = document.getElementsByClassName("buttons");
-
-function displayNum(){
-    buttons.addEventListener('click', function(){
-        console.log('clicky!');
+document.querySelectorAll('.buttons').forEach(item => {
+    item.addEventListener('click', () =>{
+        console.log('clicky');
     })
+})
+var buttons = document.getElementsByClassName("buttons");
+
+console.log(document.getElementsByClassName('buttons'));
+var displayNum = function() {
+    console.log('click')
+    var attribute = this.getAttribute("innerHTML");
+    console.log(attribute);
+    alert(attribute);
 }
 
-
+for (var i=0; i < buttons.length; i++){
+    console.log(buttons[i]);
+    buttons[i].addEventListener('click', displayNum, false);
+}
 
 
 
