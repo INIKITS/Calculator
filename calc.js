@@ -1,23 +1,85 @@
-document.querySelectorAll('.buttons').forEach(item => {
-    item.addEventListener('click', () =>{
-        console.log('clicky');
-    })
-})
 var buttons = document.getElementsByClassName("buttons");
+var calc = document.getElementById("calculator");
+var display = document.getElementById("display");
+console.log(display);
+
+var disp = '';
+var y = ''; 
+var oper = '';
+
+function updateDisplay(value){
+
+    value = y + value;
+    disp = value;
+    display.innerHTML = disp;
+    console.log(disp);
+    y = disp;
+}
+
+function clearDisplay() {
+    display.innerHTML = "";
+}
 
 console.log(document.getElementsByClassName('buttons'));
-var displayNum = function() {
-    console.log('click')
-    var attribute = this.getAttribute("innerHTML");
-    console.log(attribute);
-    alert(attribute);
-}
+var getInput = function() {
+    var value = this.innerHTML;
+    console.log(value);
 
-for (var i=0; i < buttons.length; i++){
-    console.log(buttons[i]);
-    buttons[i].addEventListener('click', displayNum, false);
-}
+    if (isNaN(value)){
+        console.log('pooppiieeeee')
 
+        switch (value){ 
+            case '+':
+                console.log('+');
+                break;
+            case '-':
+                console.log('-');
+                break;
+            case '*':
+                console.log('*');
+                break;
+            case '/': 
+                console.log('/');
+                break;
+            case '.':
+                console.log('.');
+                break;
+            case 'A/C':
+                console.log('clear');
+                break;
+            case '+/-':
+                console.log('plus/min');
+                break;
+            case '=':
+                console.log('=');
+                break;
+            default:
+                console.log('nope');    
+        }
+    }
+    else{
+        var pointNum = parseFloat(value);
+        updateDisplay(pointNum);
+    }
+    
+}
+document.addEventListener("click", function() {
+    console.log('butt');
+    for (var i=0; i < buttons.length; i++){
+        console.log('for loop');
+        buttons[i].addEventListener('click', getInput, false);
+    }
+}
+)
+
+function operate(x,y,oper){
+    switch(oper){
+        case '+': sum(x,y);
+        case '-': subtract(x,y);
+        case '*': product(x,y);
+        case '/': divide(x,y);
+    }
+}
 
 
 
@@ -34,14 +96,5 @@ function product(x,y){
 }
 
 function divide(x,y){
-    return x/y;
-}
-
-function operate(x,y,oper){
-    switch(oper){
-        case '+': sum(x,y);
-        case '-': subtract(x,y);
-        case '*': product(x,y);
-        case '/': divide(x,y);
-    }
+    return x/y + x%y;
 }

@@ -45,12 +45,12 @@ body{
     height: 40em;
     width: 30em;
     grid-template-areas: 
-        "display display    display display"
-        "btnclr  btnplusmin btnplus btnmin"
-        "btn1    btn2       btn3    btnmultiply"
-        "btn4    btn5       btn6    btndiv"
-        "btn7    btn8       btn9    btnequal"
-        "btn0    btn0       btndot  btnequal ";
+    "display display    display display"
+    "btnclr  btnplusmin btnplus btnmin"
+    "btn1    btn2       btn3    btnmultiply"
+    "btn4    btn5       btn6    btndiv"
+    "btn7    btn8       btn9    btnequal"
+    "btn0    btn0       btndot  btnequal ";
 }
 
 .buttons{
@@ -58,7 +58,21 @@ body{
     background: rgb(238, 175, 202);
     box-shadow: 2px 0px 2px 2px rgba(15, 15, 15, 0.35);
     border-radius: 5%;
+    color: rgb(245, 241, 241);
+    text-shadow: 1px 1px 2px black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 1px 0 2px;
+    font-size: 30px;
 }
+
+.buttons:active{
+    transform: translateY(2px);
+    box-shadow: 0 3px #666;
+}
+
 #btn1{
     grid-area: btn1;
 }
@@ -138,20 +152,5 @@ body{
     
 }
 
-.buttons{
-    color: rgb(245, 241, 241);
-    text-shadow: 1px 1px 2px black;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 1px 0 2px;
-    font-size: 30px;
-    
-}
 
-.buttons:active{
-    transform: translateY(2px);
-    box-shadow: 0 3px #666;
-}
 
