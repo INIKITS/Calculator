@@ -7,6 +7,8 @@ var disp = '';
 var y = ''; 
 var oper = '';
 
+var tempNum = '';
+
 function updateDisplay(value){
 
     value = y + value;
@@ -17,7 +19,7 @@ function updateDisplay(value){
 }
 
 function clearDisplay() {
-    display.innerHTML = "";
+    display.innerHTML = '0';
 }
 
 console.log(document.getElementsByClassName('buttons'));
@@ -31,26 +33,59 @@ var getInput = function() {
         switch (value){ 
             case '+':
                 console.log('+');
+                oper = '+';
+                tempNum = disp;
+                console.log(tempNum);
+                disp = '';
+                y = '';
+                value = '';
                 break;
             case '-':
                 console.log('-');
+                oper = '-';
                 break;
             case '*':
                 console.log('*');
+                oper = '*';
                 break;
             case '/': 
                 console.log('/');
+                oper = '/';
                 break;
             case '.':
                 console.log('.');
+                updateDisplay('.');
                 break;
             case 'A/C':
                 console.log('clear');
+                disp = '';
+                y = '';
+                value = '';
+                clearDisplay();
                 break;
             case '+/-':
                 console.log('plus/min');
+                disp = disp * -1;
+                display.innerHTML = disp;
+                console.log(disp);
                 break;
             case '=':
+                switch(oper){
+                    case '+':
+                        operate(tempNum, disp, oper)
+                        console.log(typeof(tempNum, disp, oper));
+                        console.log(tempNum, disp, oper);
+                        break;
+                    case '-':
+                        break;
+                    case '*':
+                        break;
+                    case '/':
+                        break;
+                    default:
+                        console.log('meeeEEEEEHHHH');
+                    
+                }
                 console.log('=');
                 break;
             default:
@@ -73,8 +108,11 @@ document.addEventListener("click", function() {
 )
 
 function operate(x,y,oper){
+    var num1 = parseFloat(x);
+    var num2 = parseFloat(y);
+    console.log(typeof(num1));
     switch(oper){
-        case '+': sum(x,y);
+        case '+': sum(num1,num2);
         case '-': subtract(x,y);
         case '*': product(x,y);
         case '/': divide(x,y);
@@ -84,7 +122,10 @@ function operate(x,y,oper){
 
 
 function sum(x,y){
-    return x+y;
+    disp = (x+y);
+    display.innerHTML = disp;
+    
+    console.log(disp);
 }
 
 function subtract(x,y){
