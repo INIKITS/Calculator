@@ -11,6 +11,7 @@ var tempNum = '';
 
 function updateDisplay(value){
 
+
     value = y + value;
     disp = value;
     display.innerHTML = disp;
@@ -26,31 +27,40 @@ console.log(document.getElementsByClassName('buttons'));
 var getInput = function() {
     var value = this.innerHTML;
     console.log(value);
-
+    
     if (isNaN(value)){
-        console.log('pooppiieeeee')
-
+        console.log('value NAN')
+        if (oper){
+            operate(tempNum, disp, oper);
+            tempNum = '';
+            oper = '';
+    }
         switch (value){ 
             case '+':
+
                 console.log('+');
                 oper = '+';
                 tempNum = disp;
                 console.log(tempNum);
-                disp = '';
-                y = '';
-                value = '';
+                clearVar();
                 break;
             case '-':
                 console.log('-');
                 oper = '-';
+                tempNum = disp;
+                clearVar();
                 break;
             case '*':
                 console.log('*');
                 oper = '*';
+                tempNum = disp;
+                clearVar();
                 break;
             case '/': 
                 console.log('/');
                 oper = '/';
+                tempNum = disp;
+                clearVar();
                 break;
             case '.':
                 console.log('.');
@@ -61,6 +71,7 @@ var getInput = function() {
                 disp = '';
                 y = '';
                 value = '';
+                oper = '';
                 clearDisplay();
                 break;
             case '+/-':
@@ -70,52 +81,57 @@ var getInput = function() {
                 console.log(disp);
                 break;
             case '=':
-                switch(oper){
-                    case '+':
-                        operate(tempNum, disp, oper)
-                        console.log(typeof(tempNum, disp, oper));
-                        console.log(tempNum, disp, oper);
-                        break;
-                    case '-':
-                        break;
-                    case '*':
-                        break;
-                    case '/':
-                        break;
-                    default:
-                        console.log('meeeEEEEEHHHH');
-                    
-                }
+                operate(tempNum, disp, oper);
                 console.log('=');
                 break;
             default:
-                console.log('nope');    
+                console.log('operator broken');    
         }
     }
     else{
+
         var pointNum = parseFloat(value);
         updateDisplay(pointNum);
     }
     
 }
 document.addEventListener("click", function() {
-    console.log('butt');
+    console.log('Event Click');
     for (var i=0; i < buttons.length; i++){
         console.log('for loop');
         buttons[i].addEventListener('click', getInput, false);
+
     }
 }
 )
 
+function clearVar(){
+    disp = '';
+    y = '';
+    value = '';
+
+}
+
 function operate(x,y,oper){
+
     var num1 = parseFloat(x);
     var num2 = parseFloat(y);
     console.log(typeof(num1));
     switch(oper){
-        case '+': sum(num1,num2);
-        case '-': subtract(x,y);
-        case '*': product(x,y);
-        case '/': divide(x,y);
+        case '+': 
+            sum(num1,num2);
+            break;
+        case '-': 
+            subtract(num1,num2);
+            break;
+        case '*': 
+            product(num1,num2);
+            break;
+        case '/': 
+            divide(num1,num2);
+            break;
+        default:
+            console.log('operate function broken');
     }
 }
 
@@ -124,18 +140,21 @@ function operate(x,y,oper){
 function sum(x,y){
     disp = (x+y);
     display.innerHTML = disp;
-    
-    console.log(disp);
 }
 
 function subtract(x,y){
-    return x-y;
+    disp = (x-y);
+    display.innerHTML = disp;
 }
 
 function product(x,y){
-    return x*y;
+    disp = (x*y);
+    display.innerHTML = disp;
 }
 
 function divide(x,y){
-    return x/y + x%y;
+    disp = (x/y + x%y);
+    display.innerHTML = disp;
+    
+    
 }
