@@ -11,7 +11,6 @@ var tempNum = '';
 
 function updateDisplay(value){
 
-
     value = y + value;
     disp = value;
     display.innerHTML = disp;
@@ -28,43 +27,65 @@ var getInput = function() {
     var value = this.innerHTML;
     console.log(value);
     
+    if (value === '.'){
+        if (disp.includes('.')){
+            console.log('Too many decimals!');
+        }
+        else {
+        updateDisplay('.');
+        }
+    }
+
+
+    
     if (isNaN(value)){
         console.log('value NAN')
-        if (oper){
-            operate(tempNum, disp, oper);
-            tempNum = '';
-            oper = '';
-    }
+
         switch (value){ 
             case '+':
-
+                if (oper){
+                    operate(tempNum, y, oper);
+                   }
                 console.log('+');
                 oper = '+';
                 tempNum = disp;
                 console.log(tempNum);
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
             case '-':
+                if (oper){
+                    operate(tempNum, y, oper);
+                   }
                 console.log('-');
                 oper = '-';
                 tempNum = disp;
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
             case '*':
+                if (oper){
+                    operate(tempNum, y, oper);
+                   }
                 console.log('*');
                 oper = '*';
                 tempNum = disp;
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
             case '/': 
+                if (oper){
+                    operate(tempNum, y, oper);
+                }
                 console.log('/');
                 oper = '/';
                 tempNum = disp;
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
             case '.':
                 console.log('.');
-                updateDisplay('.');
+                document.getElementById('btndot').style.backgroundColor = 'rgb(213, 175, 202)';
                 break;
             case 'A/C':
                 console.log('clear');
@@ -72,6 +93,8 @@ var getInput = function() {
                 y = '';
                 value = '';
                 oper = '';
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
+
                 clearDisplay();
                 break;
             case '+/-':
@@ -81,7 +104,9 @@ var getInput = function() {
                 console.log(disp);
                 break;
             case '=':
-                operate(tempNum, disp, oper);
+                console.log(tempNum, disp, oper);
+                operate(tempNum, y, oper);
+                document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 console.log('=');
                 break;
             default:
@@ -89,12 +114,12 @@ var getInput = function() {
         }
     }
     else{
-
-        var pointNum = parseFloat(value);
-        updateDisplay(pointNum);
+        
+        updateDisplay(value);
     }
-    
 }
+
+
 document.addEventListener("click", function() {
     console.log('Event Click');
     for (var i=0; i < buttons.length; i++){
@@ -116,7 +141,14 @@ function operate(x,y,oper){
 
     var num1 = parseFloat(x);
     var num2 = parseFloat(y);
+    // num1 = num1.toFixed(2);
+    // num2 = num2.toFixed(2);
     console.log(typeof(num1));
+    console.log(typeof(num2));
+    console.log(num1);
+    console.log(num2);
+    console.log(oper);
+
     switch(oper){
         case '+': 
             sum(num1,num2);
@@ -130,6 +162,9 @@ function operate(x,y,oper){
         case '/': 
             divide(num1,num2);
             break;
+        case '=':
+            console.log('equals!');
+            break;
         default:
             console.log('operate function broken');
     }
@@ -139,21 +174,25 @@ function operate(x,y,oper){
 
 function sum(x,y){
     disp = (x+y);
+    disp = disp.toFixed(2);
     display.innerHTML = disp;
 }
 
 function subtract(x,y){
     disp = (x-y);
+    disp = disp.toFixed(2);
     display.innerHTML = disp;
 }
 
 function product(x,y){
     disp = (x*y);
+    disp = disp.toFixed(2);
     display.innerHTML = disp;
 }
 
 function divide(x,y){
-    disp = (x/y + x%y);
+    disp = x/y;
+    disp = disp.toFixed(2);
     display.innerHTML = disp;
     
     
