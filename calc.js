@@ -1,16 +1,18 @@
+
+// setup shortcuts for elements //
 var buttons = document.getElementsByClassName("buttons");
 var calc = document.getElementById("calculator");
 var display = document.getElementById("display");
-console.log(display);
 
+// empty variables for holding values //
+// couldn't think of a better name for the y variable, its just a placeholder for operations //
 var disp = '';
 var y = ''; 
 var oper = '';
-
 var tempNum = '';
 
+// updates display and places values into respective variables //
 function updateDisplay(value){
-
     value = y + value;
     disp = value;
     display.innerHTML = disp;
@@ -22,19 +24,21 @@ function clearDisplay() {
     display.innerHTML = '0';
 }
 
-console.log(document.getElementsByClassName('buttons'));
+// getting innerHTML from button presses //
 function getInput() {
     var value = this.innerHTML;
-    console.log(value);
     sortInput(value);
 }
+
+// sorts inputs and sends to respective operations or stores number for later use //
 function sortInput(value){
+    // Enter == '=' button //
     if (value === 'Enter'){
         operate(tempNum,y,oper);
     }
+    // checks for decimal, adds one or does nothing //
     if (value === '.'){
         if (disp.includes('.')){
-            console.log('Too many decimals!');
         }
         else {
         updateDisplay('.');
@@ -44,30 +48,29 @@ function sortInput(value){
 
     
     if (isNaN(value)){
-        console.log('value NAN')
 
         switch (value){ 
             case '+':
                 if (oper){
                     operate(tempNum, y, oper);
                    }
-                console.log('+');
                 oper = '+';
                 tempNum = disp;
-                console.log(tempNum);
+                // this changes decimal button back to normal color, seemed odd to make a function just for this //
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
+
             case '-':
                 if (oper){
                     operate(tempNum, y, oper);
                    }
-                console.log('-');
                 oper = '-';
                 tempNum = disp;
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
+
             case '*':
                 if (oper){
                     operate(tempNum, y, oper);
@@ -78,68 +81,64 @@ function sortInput(value){
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
+
             case '/': 
                 if (oper){
                     operate(tempNum, y, oper);
                 }
-                console.log('/');
                 oper = '/';
                 tempNum = disp;
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
                 clearVar();
                 break;
+
             case '.':
-                console.log('.');
                 document.getElementById('btndot').style.backgroundColor = 'rgb(213, 175, 202)';
                 break;
+
             case 'A/C':
-                console.log('clear');
                 disp = '';
                 y = '';
                 value = '';
                 oper = '';
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
-
                 clearDisplay();
                 break;
+
             case '+/-':
-                console.log('plus/min');
                 disp = disp * -1;
                 display.innerHTML = disp;
-                console.log(disp);
                 break;
+                
             case '=':
                 if (y === '0' && oper === '/'){
                     display.innerHTML = 'AHHHHHHHHH >:(';
                     fall();
                     break;
                 }
-                console.log(tempNum, disp, oper);
+
                 operate(tempNum, y, oper);
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
-                console.log('=');
                 break;
+
             default:
                 console.log('operator broken');    
+            }
         }
-    }
     else{
-        
         updateDisplay(value);
     }
 }
 
 
-
+// listens for and sends input from button click to be sorted //
 calc.addEventListener("click", function() {
-    console.log('Event Click');
     for (var i=0; i < buttons.length; i++){
         console.log('for loop');
         buttons[i].addEventListener('click', getInput, false);
 
     }
-}
-)
+})
 
 function clearVar(){
     disp = '';
@@ -148,34 +147,32 @@ function clearVar(){
 
 }
 
+// takes variables and sends to respective operation function //
 function operate(x,y,oper){
-
     var num1 = parseFloat(x);
     var num2 = parseFloat(y);
-    // num1 = num1.toFixed(2);
-    // num2 = num2.toFixed(2);
-    console.log(typeof(num1));
-    console.log(typeof(num2));
-    console.log(num1);
-    console.log(num2);
-    console.log(oper);
 
     switch(oper){
         case '+': 
             sum(num1,num2);
             break;
+
         case '-': 
             subtract(num1,num2);
             break;
+
         case '*': 
             product(num1,num2);
             break;
+
         case '/': 
             divide(num1,num2);
             break;
+
         case '=':
             console.log('equals!');
             break;
+
         default:
             console.log('operate function broken');
     }
@@ -205,21 +202,19 @@ function divide(x,y){
     disp = x/y;
     disp = disp.toFixed(2);
     display.innerHTML = disp;
-    
-    
 }
+
+// animation for 0/0 //
 function fall(){
-    console.log('Animate! I hope!');
     calc.animate([
      {transform: 'rotate(360deg)'},
     ],  {
         
     duration: 400,
     iterations: 10
-});
-}
+});}
 
+// keyboard support! //
 window.addEventListener('keydown', function (e) {
     sortInput(e.key);
-    console.log(e.key);
 }, false);
