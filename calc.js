@@ -23,10 +23,15 @@ function clearDisplay() {
 }
 
 console.log(document.getElementsByClassName('buttons'));
-var getInput = function() {
+function getInput() {
     var value = this.innerHTML;
     console.log(value);
-
+    sortInput(value);
+}
+function sortInput(value){
+    if (value === 'Enter'){
+        operate(tempNum,y,oper);
+    }
     if (value === '.'){
         if (disp.includes('.')){
             console.log('Too many decimals!');
@@ -125,7 +130,8 @@ var getInput = function() {
 }
 
 
-document.addEventListener("click", function() {
+
+calc.addEventListener("click", function() {
     console.log('Event Click');
     for (var i=0; i < buttons.length; i++){
         console.log('for loop');
@@ -202,7 +208,6 @@ function divide(x,y){
     
     
 }
-
 function fall(){
     console.log('Animate! I hope!');
     calc.animate([
@@ -213,3 +218,8 @@ function fall(){
     iterations: 10
 });
 }
+
+window.addEventListener('keydown', function (e) {
+    sortInput(e.key);
+    console.log(e.key);
+}, false);
