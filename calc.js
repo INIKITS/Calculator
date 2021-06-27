@@ -26,7 +26,7 @@ console.log(document.getElementsByClassName('buttons'));
 var getInput = function() {
     var value = this.innerHTML;
     console.log(value);
-    
+
     if (value === '.'){
         if (disp.includes('.')){
             console.log('Too many decimals!');
@@ -104,6 +104,11 @@ var getInput = function() {
                 console.log(disp);
                 break;
             case '=':
+                if (y === '0' && oper === '/'){
+                    display.innerHTML = 'AHHHHHHHHH >:(';
+                    fall();
+                    break;
+                }
                 console.log(tempNum, disp, oper);
                 operate(tempNum, y, oper);
                 document.getElementById('btndot').style.backgroundColor = 'rgb(238, 175, 202)';
@@ -196,4 +201,15 @@ function divide(x,y){
     display.innerHTML = disp;
     
     
+}
+
+function fall(){
+    console.log('Animate! I hope!');
+    calc.animate([
+     {transform: 'rotate(360deg)'},
+    ],  {
+        
+    duration: 400,
+    iterations: 10
+});
 }
